@@ -1,6 +1,7 @@
 {
   "name": "with-redux-toolkit",
   "version": "1.0.0",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -9,10 +10,14 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "@reduxjs/toolkit": "^1.7.1",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.2.1",
     "@tailwindcss/line-clamp": "^0.2.0",
+    "axios": "^1.6.2",
     "firebase": "^9.23.0",
-    "firebase-admin": "^10.0.1",
+    "firebase-admin": "^10.3.0",
     "format-currency": "^1.0.0",
+    "micro": "^10.0.1",
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
     "next-auth-client": "^1.5.0",
@@ -20,7 +25,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.6",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "stripe": "^14.8.0"
   },
   "license": "MIT",
   "devDependencies": {
