@@ -14,7 +14,7 @@ function Checkout() {
   const { data: session } = useSession();
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
-  const priceInINR = (parseFloat(total) * 83).toFixed(2);
+  const priceInINR = (total) * 83;
   
 
   const createCheckoutSession = async () => {

@@ -5,8 +5,8 @@ export default async (req, res) => {
 
   const transformedItems = items.map((item) => ({
     price_data: {
-      currency: 'usd', // Change this to the desired currency
-      unit_amount: item.price * 100, // Assuming the price is in dollars, convert it to cents
+      currency: 'inr', // Change this to the desired currency
+      unit_amount: ((item.price * 83) * 100), // Assuming the price is in dollars, convert it to cents
       product_data: {
         name: item.title,
         description: item.description,
@@ -15,11 +15,11 @@ export default async (req, res) => {
     },
     quantity: 1,
   }));
-
+  
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     shipping_address_collection: {
-      allowed_countries: ["GB", "US", "CA", "LK"],
+      allowed_countries: ["GB", "US", "CA", "IN"],
     },
     line_items: transformedItems,
     mode: "payment",
