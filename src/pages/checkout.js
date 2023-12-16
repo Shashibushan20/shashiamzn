@@ -12,7 +12,7 @@ const stripePromise = loadStripe(process.env.stripe_public_key);
 
 function Checkout() {
   const { data: session } = useSession();
-  const itemsInBasket = useSelector(selectItems);
+  const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const priceInINR = (parseFloat(total) * 83).toFixed(2);
   
@@ -23,8 +23,8 @@ function Checkout() {
    
       // Call backend to create checkout session
       const checkoutSession = await axios.post("/api/create-checkout-session", {
-        items: itemsInBasket,
-        email: session.user.email,
+        items: items,
+        email: session?.user?.email,
       });
 
       // Redirect user/customer to stripe checkout
@@ -49,11 +49,11 @@ function Checkout() {
           />
           <div className='flex flex-col p-5 space-y-10 bg-white'>
             <h1 className='text-3xl border-b pb-4'>
-              {itemsInBasket.length === 0
+              {items.length === 0
                 ? 'Your amazon basket is empty'
                 : 'Shopping basket'}
             </h1>
-            {itemsInBasket.map((item, i) => (
+            {items.map((item, i) => (
               <CheckoutProduct
                 key={i}
                 id={item.id}
@@ -71,10 +71,10 @@ function Checkout() {
 
         {/* Right */}
         <div className='flex flex-col bg-white p-10 shadow-md'>
-          {itemsInBasket.length > 0 && (
+          {items.length > 0 && (
             <>
               <h2 className='whitespace-nowrap'>
-                Subtotal({itemsInBasket.length} items): {priceInINR}₹
+                Subtotal({items.length} items): {priceInINR}₹
               </h2>
                   <button
                     role='link'
